@@ -78,9 +78,12 @@ try:
     req = requests.get(path)
     if req.status_code == 200:
         print('Файл модели на DropBox найден, сохраняем его на диске. ')
-        open('densenet123.h5', 'wb').write(req.content)
-except:
-    print('Не удается загрузить файл с обученной моделью с DropBox, будем искать его на диске или собирать её заново.')
+        try:
+            open('densenet123.h5', 'wb').write(req.content)
+        except Exception as exc:
+         print(f'Не удалось сохранить файл с моделью на диске. {exc}')
+except Exception as exc:
+    print(f'Не удается загрузить файл с обученной моделью с DropBox, будем искать его на диске или собирать её заново. {exc}')
 
 if os.path.isfile(file_name):
     print('Файл с обученной сетью найден на диске, загружаем.')
