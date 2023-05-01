@@ -81,7 +81,7 @@ try:
         try:
             open('densenet123.h5', 'wb').write(req.content)
         except Exception as exc:
-         print(f'Не удалось сохранить файл с моделью на диске. {exc}')
+            print(f'Не удалось сохранить файл с моделью на диске. {exc}')
 except Exception as exc:
     print(f'Не удается загрузить файл с обученной моделью с DropBox, будем искать его на диске или собирать её заново. {exc}')
 
